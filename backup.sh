@@ -46,13 +46,11 @@ origAbsPath=$(pwd)
 
 # [TASK 6]
 # Change to destination directory and get its absolute path
-# Fixed: Added $ before destinationDirectory
 cd "$destinationDirectory" || exit
 destDirAbsPath=$(pwd) 
 
 # [TASK 7]
 # Return to original directory, then navigate to target directory
-# Fixed: Added quotes around variable for paths with spaces
 cd "$origAbsPath" || exit
 cd "$targetDirectory" || exit
 
@@ -69,7 +67,6 @@ for file in *
 do
   # [TASK 10]
   # Check if the file was modified within the last 24 hours
-  # Fixed: Added quotes around $file to handle filenames with spaces
   if (( $(date -r "$file" +%s) > yesterdayTS ))
   then
     # [TASK 11]
@@ -80,7 +77,6 @@ done
 
 # [TASK 12]
 # Create compressed tar archive containing all files to backup
-# Fixed: Added quotes around array expansion to handle spaces in filenames
 tar -czvf "$backupFileName" "${toBackup[@]}"
 
 # [TASK 13]
